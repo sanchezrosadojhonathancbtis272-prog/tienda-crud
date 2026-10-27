@@ -1,0 +1,64 @@
+body {
+    background-color: #f3f5f9;
+    color: #253348;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.card {
+    border: 0;
+    border-radius: 1rem;
+}
+
+section[id] {
+    scroll-margin-top: 1rem;
+}
+
+.table th {
+    white-space: nowrap;
+}
+/* =========================
+   MODO OSCURO COMPLETO
+   ========================= */
+
+[data-bs-theme="dark"] body {
+    background-color: #121212 !important;
+    color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] main {
+    background-color: #121212;
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .table {
+    --bs-table-bg: #212529;
+    --bs-table-color: #f8f9fa;
+    --bs-table-border-color: #495057;
+}
+
+[data-bs-theme="dark"] input,
+[data-bs-theme="dark"] select {
+    background-color: #212529 !important;
+    color: #f8f9fa !important;
+    border-color: #495057 !important;
+}
+
+[data-bs-theme="dark"] input::placeholder {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] footer {
+    color: #adb5bd !important;
+    border-color: #495057 !important;
+}
+
+[data-bs-theme="dark"] .text-secondary {
+    color: #adb5bd !important;
+}

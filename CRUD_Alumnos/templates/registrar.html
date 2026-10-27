@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+<section class="card shadow-sm">
+    <div class="card-body p-4">
+
+        <h2 class="h4 mb-3">Agregar alumno</h2>
+
+        <form method="post"
+              action="{{ url_for('agregar') }}"
+              class="row g-3">
+
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">
+                    Nombre completo
+                </label>
+
+                <input id="nombre"
+                       name="nombre"
+                       class="form-control"
+                       required
+                       maxlength="80"
+                       placeholder="Ejemplo: Ana López">
+            </div>
+
+            <div class="col-md-3">
+                <label for="grupo" class="form-label">
+                    Grupo
+                </label>
+
+                <input id="grupo"
+                       name="grupo"
+                       class="form-control"
+                       required
+                       maxlength="20"
+                       placeholder="Ejemplo: 501">
+            </div>
+
+            <div class="col-md-3">
+                <label for="turno" class="form-label">
+                    Turno
+                </label>
+
+                <select id="turno"
+                        name="turno"
+                        class="form-select"
+                        required>
+
+                    <option value="">Selecciona</option>
+                    <option value="Matutino">Matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+
+                </select>
+            </div>
+
+            <div class="col-12 d-flex gap-2 flex-wrap">
+                <button type="submit" class="btn btn-success">
+                    Guardar alumno
+                </button>
+
+                <button type="reset" class="btn btn-outline-secondary">
+                    Limpiar formulario
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}
