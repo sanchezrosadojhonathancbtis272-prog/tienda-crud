@@ -1,64 +1,271 @@
+
+/* =====================================
+   TIENDA CRUD - PRACTICA 05
+   ESTILOS GENERALES
+===================================== */
+
+:root {
+    --tienda-azul: #2563eb;
+    --tienda-azul-oscuro: #172554;
+    --tienda-fondo: #f3f6fc;
+    --tienda-texto: #253348;
+}
+
+/* PAGINA GENERAL */
+
 body {
-    background-color: #f3f5f9;
-    color: #253348;
+    background-color: var(--tienda-fondo);
+    color: var(--tienda-texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+main {
+    min-height: 75vh;
+}
+
+/* BARRA DE NAVEGACION */
+
+.navbar {
+    background: linear-gradient(
+        90deg,
+        #0f172a,
+        #1e3a8a
+    ) !important;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
 .navbar-brand {
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    font-size: 1.25rem;
 }
+
+.navbar .nav-link {
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #93c5fd !important;
+}
+
+/* TARJETAS */
 
 .card {
     border: 0;
     border-radius: 1rem;
+    transition: box-shadow 0.2s ease;
 }
+
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-body {
+    border-radius: 1rem;
+}
+
+/* TITULOS */
+
+h1, h2, h3, h4, h5 {
+    letter-spacing: -0.3px;
+}
+
+/* FORMULARIOS */
+
+.form-control,
+.form-select {
+    border-radius: 0.65rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #cbd5e1;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--tienda-azul);
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+}
+
+/* BOTONES */
+
+.btn {
+    border-radius: 0.65rem;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--tienda-azul);
+    border-color: var(--tienda-azul);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* TABLAS */
+
+.table {
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.table td {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.table-responsive {
+    border-radius: 0.75rem;
+}
+
+/* IMAGENES */
+
+.table img {
+    border-radius: 0.65rem;
+    object-fit: cover;
+}
+
+.img-thumbnail {
+    border-radius: 0.75rem;
+}
+
+/* ETIQUETAS */
+
+.badge {
+    font-weight: 600;
+    padding: 0.45rem 0.65rem;
+}
+
+/* SECCIONES */
 
 section[id] {
     scroll-margin-top: 1rem;
 }
 
-.table th {
-    white-space: nowrap;
+/* PIE DE PAGINA */
+
+footer {
+    margin-top: 2rem;
 }
-/* =========================
-   MODO OSCURO COMPLETO
-   ========================= */
+
+/* =====================================
+   MODO OSCURO
+===================================== */
 
 [data-bs-theme="dark"] body {
-    background-color: #121212 !important;
-    color: #f8f9fa;
+    background-color: #0f172a;
+    color: #f1f5f9;
 }
 
 [data-bs-theme="dark"] main {
-    background-color: #121212;
+    background-color: #0f172a;
 }
 
 [data-bs-theme="dark"] .card {
-    background-color: #212529;
-    color: #f8f9fa;
+    background-color: #1e293b;
+    color: #f1f5f9;
 }
 
 [data-bs-theme="dark"] .table {
-    --bs-table-bg: #212529;
-    --bs-table-color: #f8f9fa;
-    --bs-table-border-color: #495057;
+    --bs-table-bg: #1e293b;
+    --bs-table-color: #f1f5f9;
+    --bs-table-border-color: #475569;
+    --bs-table-striped-bg: #25354b;
+    --bs-table-striped-color: #f1f5f9;
+    --bs-table-hover-bg: #334155;
+    --bs-table-hover-color: #ffffff;
 }
 
-[data-bs-theme="dark"] input,
-[data-bs-theme="dark"] select {
-    background-color: #212529 !important;
-    color: #f8f9fa !important;
-    border-color: #495057 !important;
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+    background-color: #0f172a;
+    color: #f1f5f9;
+    border-color: #475569;
 }
 
-[data-bs-theme="dark"] input::placeholder {
-    color: #adb5bd !important;
+[data-bs-theme="dark"] .form-control::placeholder,
+[data-bs-theme="dark"] textarea::placeholder {
+    color: #94a3b8;
 }
 
-[data-bs-theme="dark"] footer {
-    color: #adb5bd !important;
-    border-color: #495057 !important;
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+    background-color: #0f172a;
+    color: #ffffff;
+    border-color: #60a5fa;
 }
 
 [data-bs-theme="dark"] .text-secondary {
-    color: #adb5bd !important;
+    color: #aebed2 !important;
+}
+
+[data-bs-theme="dark"] footer {
+    color: #aebed2 !important;
+    border-color: #475569 !important;
+}
+
+[data-bs-theme="dark"] .alert-info {
+    background-color: #172f46;
+    border-color: #285a7a;
+    color: #dbeafe;
+}
+
+[data-bs-theme="dark"] .alert-warning {
+    background-color: #45371c;
+    border-color: #80611c;
+    color: #fef3c7;
+}
+
+/* =====================================
+   DISEÑO RESPONSIVO
+===================================== */
+
+@media (max-width: 768px) {
+
+    .navbar-brand {
+        font-size: 1.05rem;
+    }
+
+    .card-body {
+        padding: 1.25rem !important;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .card,
+    .navbar .nav-link {
+        transition: none;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
 }

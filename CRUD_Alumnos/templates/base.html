@@ -1,27 +1,33 @@
+
 <!doctype html>
-<html lang="es">
+<html lang="es" data-bs-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registro de alumnos V2 </title>
 
+    <title>{% block titulo %}Tienda CRUD{% endblock %}</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 
+    <!-- Estilos personalizados -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='estilos.css') }}">
 </head>
 
 <body>
 
+<!-- BARRA DE NAVEGACION -->
 <nav class="navbar navbar-expand-lg bg-dark"
      data-bs-theme="dark"
-     aria-label="Menú principal">
+     aria-label="Menu principal">
 
     <div class="container">
 
-        <a class="navbar-brand" href="{{ url_for('inicio') }}">
-                OCP INDUSTRIES
+        <a class="navbar-brand fw-bold"
+           href="{{ url_for('inicio') }}">
+            🛍️ TIENDA CRUD
         </a>
 
         <button class="navbar-toggler"
@@ -30,105 +36,127 @@
                 data-bs-target="#menuPrincipal"
                 aria-controls="menuPrincipal"
                 aria-expanded="false"
-                aria-label="Abrir o cerrar menú">
+                aria-label="Abrir menu">
 
             <span class="navbar-toggler-icon"></span>
-
         </button>
 
-        <div class="collapse navbar-collapse" id="menuPrincipal">
+        <div class="collapse navbar-collapse"
+             id="menuPrincipal">
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
 
                 <li class="nav-item">
                     <a class="nav-link"
                        href="{{ url_for('inicio') }}">
-                        Inicio
+                        🏠 Inicio
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link"
-                href="{{ url_for('registrar') }}">
-                Registrar
-                </a>
+                       href="{{ url_for('registrar') }}">
+                        ➕ Registrar producto
+                    </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link"
-                href="{{ url_for('lista') }}">
-                Lista de alumnos
-                </a>
+                       href="{{ url_for('lista') }}">
+                        📦 Productos
+                    </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link"
                        href="{{ url_for('ayuda') }}">
-                        Ayuda
+                        ❓ Ayuda
                     </a>
                 </li>
+
                 <li class="nav-item ms-lg-2">
-                <button id="btnTema"
-            class="btn btn-outline-light"
-            type="button">
-                 🌙
-                </button>
+                    <button id="btnTema"
+                            class="btn btn-outline-light"
+                            type="button"
+                            aria-label="Cambiar tema">
+                        🌙
+                    </button>
                 </li>
+
             </ul>
-
         </div>
-
     </div>
+</nav>
 
-</nav><main class="container py-4">
+<!-- CONTENIDO PRINCIPAL -->
+<main class="container py-4">
 
     <header class="mb-4">
+
         <p class="text-uppercase text-secondary small mb-1">
-            Aplicaciones Web · Práctica 03
+            Aplicaciones Web · Práctica 05
         </p>
 
-        <h1 class="h2">Registro de alumnos</h1>
+        <h1 class="h2 fw-bold">
+            Sistema de Gestión de Productos
+        </h1>
 
         <p class="text-secondary">
-            Consulta y organiza los datos del grupo.
+            Administra los productos de nuestra tienda:
+            registra, consulta, edita y elimina productos.
         </p>
+
     </header>
 
     {% block contenido %}{% endblock %}
 
 </main>
 
+<!-- PIE DE PAGINA -->
 <footer class="container py-3 border-top text-secondary small">
-    Laboratorio de Aplicaciones Web · Datos de práctica
+
+    <div class="d-flex justify-content-between flex-wrap gap-2">
+        <span>
+            🛍️ Tienda CRUD · Práctica 05
+        </span>
+
+        <span>
+            Flask · MongoDB · API REST
+        </span>
+    </div>
+
 </footer>
 
-<script src="{{ url_for('static',
-              filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-              <script>
+<!-- BOOTSTRAP JS -->
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- MODO OSCURO -->
+<script>
     const btnTema = document.getElementById("btnTema");
+    const html = document.documentElement;
 
-    btnTema.addEventListener("click", function () {
-        const html = document.documentElement;
-        const temaActual = html.getAttribute("data-bs-theme");
+    const temaGuardado = localStorage.getItem("tema") || "light";
 
-        if (temaActual === "dark") {
-            html.setAttribute("data-bs-theme", "light");
-            btnTema.textContent = "🌙";
-            localStorage.setItem("tema", "light");
-        } else {
-            html.setAttribute("data-bs-theme", "dark");
-            btnTema.textContent = "☀️";
-            localStorage.setItem("tema", "dark");
-        }
-    });
+    function aplicarTema(tema) {
+        html.setAttribute("data-bs-theme", tema);
 
-    const temaGuardado = localStorage.getItem("tema");
+        btnTema.textContent = tema === "dark" ? "☀️" : "🌙";
 
-    if (temaGuardado === "dark") {
-        document.documentElement.setAttribute("data-bs-theme", "dark");
-        btnTema.textContent = "☀️";
+        localStorage.setItem("tema", tema);
     }
 
+    aplicarTema(temaGuardado);
+
+    btnTema.addEventListener("click", function () {
+
+        const temaActual = html.getAttribute("data-bs-theme");
+
+        const nuevoTema = temaActual === "dark"
+            ? "light"
+            : "dark";
+
+        aplicarTema(nuevoTema);
+    });
 </script>
 
 </body>
