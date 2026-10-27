@@ -1,0 +1,188 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Editar producto | Tienda CRUD{% endblock %}
+
+{% block contenido %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+
+        <!-- ENCABEZADO -->
+        <div class="mb-4">
+            <h2 class="fw-bold">✏️ Editar producto</h2>
+
+            <p class="text-secondary">
+                Actualiza la información del producto seleccionado.
+                Los cambios se guardarán en el inventario.
+            </p>
+        </div>
+
+        <!-- FORMULARIO -->
+        <section class="card shadow-sm border-0 rounded-4">
+
+            <div class="card-body p-4 p-md-5">
+
+                <h4 class="fw-bold mb-4">
+                    📦 Información del producto
+                </h4>
+
+                <form method="post"
+                      action="{{ url_for('editar', id=producto._id) }}"
+                      class="row g-4">
+
+                    <!-- NOMBRE -->
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label fw-semibold">
+                            Nombre del producto *
+                        </label>
+
+                        <input type="text"
+                               id="nombre"
+                               name="nombre"
+                               class="form-control"
+                               value="{{ producto.nombre }}"
+                               maxlength="80"
+                               required>
+                    </div>
+
+                    <!-- CATEGORIA -->
+                    <div class="col-md-6">
+                        <label for="categoria" class="form-label fw-semibold">
+                            Categoría *
+                        </label>
+
+                        <select id="categoria"
+                                name="categoria"
+                                class="form-select"
+                                required>
+
+                            <option value="">Selecciona una categoría</option>
+
+                            {% for opcion in ['Ropa', 'Calzado', 'Electrónica', 'Accesorios', 'Otros'] %}
+
+                            <option value="{{ opcion }}"
+                                {% if producto.categoria == opcion %}selected{% endif %}>
+                                {{ opcion }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <!-- PRECIO -->
+                    <div class="col-md-6">
+                        <label for="precio" class="form-label fw-semibold">
+                            Precio ($ MXN) *
+                        </label>
+
+                        <input type="number"
+                               id="precio"
+                               name="precio"
+                               class="form-control"
+                               value="{{ producto.precio }}"
+                               min="0"
+                               step="0.01"
+                               required>
+                    </div>
+
+                    <!-- STOCK -->
+                    <div class="col-md-6">
+                        <label for="stock" class="form-label fw-semibold">
+                            Cantidad disponible *
+                        </label>
+
+                        <input type="number"
+                               id="stock"
+                               name="stock"
+                               class="form-control"
+                               value="{{ producto.stock }}"
+                               min="0"
+                               step="1"
+                               required>
+                    </div>
+
+                    <!-- DESCRIPCION -->
+                    <div class="col-12">
+                        <label for="descripcion" class="form-label fw-semibold">
+                            Descripción del producto
+                        </label>
+
+                        <textarea id="descripcion"
+                                  name="descripcion"
+                                  class="form-control"
+                                  rows="4"
+                                  maxlength="500"
+                                  placeholder="Características del producto...">{{ producto.descripcion }}</textarea>
+                    </div>
+
+                    <!-- IMAGEN -->
+                    <div class="col-12">
+                        <label for="imagen" class="form-label fw-semibold">
+                            URL de imagen
+                        </label>
+
+                        <input type="url"
+                               id="imagen"
+                               name="imagen"
+                               class="form-control"
+                               maxlength="1000"
+                               value="{{ producto.imagen }}"
+                               placeholder="https://ejemplo.com/imagen.jpg">
+                    </div>
+
+                    <!-- VISTA PREVIA -->
+                    {% if producto.imagen %}
+                    <div class="col-12">
+
+                        <p class="fw-semibold mb-2">
+                            Imagen actual
+                        </p>
+
+                        <img src="{{ producto.imagen }}"
+                             alt="{{ producto.nombre }}"
+                             class="img-thumbnail rounded-3"
+                             style="max-width: 180px; max-height: 180px; object-fit: contain;"
+                             referrerpolicy="no-referrer">
+
+                    </div>
+                    {% endif %}
+
+                    <!-- BOTONES -->
+                    <div class="col-12">
+
+                        <hr class="my-3">
+
+                        <div class="d-flex gap-2 flex-wrap">
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                💾 Guardar cambios
+                            </button>
+
+                            <a href="{{ url_for('lista') }}"
+                               class="btn btn-outline-secondary">
+                                ❌ Cancelar
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+        <!-- INFORMACION -->
+        <div class="alert alert-info mt-4">
+            <strong>💡 Importante:</strong>
+            Al guardar los cambios, se actualizará
+            el producto existente en MongoDB.
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

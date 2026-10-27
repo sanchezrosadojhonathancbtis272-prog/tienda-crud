@@ -1,0 +1,163 @@
+
+<!doctype html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block titulo %}Tienda CRUD{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+
+<body>
+
+<!-- BARRA DE NAVEGACION -->
+<nav class="navbar navbar-expand-lg bg-dark"
+     data-bs-theme="dark"
+     aria-label="Menu principal">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="{{ url_for('inicio') }}">
+            🛍️ TIENDA CRUD
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menu">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="menuPrincipal">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('inicio') }}">
+                        🏠 Inicio
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('registrar') }}">
+                        ➕ Registrar producto
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('lista') }}">
+                        📦 Productos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('ayuda') }}">
+                        ❓ Ayuda
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+                    <button id="btnTema"
+                            class="btn btn-outline-light"
+                            type="button"
+                            aria-label="Cambiar tema">
+                        🌙
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="container py-4">
+
+    <header class="mb-4">
+
+        <p class="text-uppercase text-secondary small mb-1">
+            Aplicaciones Web · Práctica 05
+        </p>
+
+        <h1 class="h2 fw-bold">
+            Sistema de Gestión de Productos
+        </h1>
+
+        <p class="text-secondary">
+            Administra los productos de nuestra tienda:
+            registra, consulta, edita y elimina productos.
+        </p>
+
+    </header>
+
+    {% block contenido %}{% endblock %}
+
+</main>
+
+<!-- PIE DE PAGINA -->
+<footer class="container py-3 border-top text-secondary small">
+
+    <div class="d-flex justify-content-between flex-wrap gap-2">
+        <span>
+            🛍️ Tienda CRUD · Práctica 05
+        </span>
+
+        <span>
+            Flask · MongoDB · API REST
+        </span>
+    </div>
+
+</footer>
+
+<!-- BOOTSTRAP JS -->
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- MODO OSCURO -->
+<script>
+    const btnTema = document.getElementById("btnTema");
+    const html = document.documentElement;
+
+    const temaGuardado = localStorage.getItem("tema") || "light";
+
+    function aplicarTema(tema) {
+        html.setAttribute("data-bs-theme", tema);
+
+        btnTema.textContent = tema === "dark" ? "☀️" : "🌙";
+
+        localStorage.setItem("tema", tema);
+    }
+
+    aplicarTema(temaGuardado);
+
+    btnTema.addEventListener("click", function () {
+
+        const temaActual = html.getAttribute("data-bs-theme");
+
+        const nuevoTema = temaActual === "dark"
+            ? "light"
+            : "dark";
+
+        aplicarTema(nuevoTema);
+    });
+</script>
+
+</body>
+</html>
