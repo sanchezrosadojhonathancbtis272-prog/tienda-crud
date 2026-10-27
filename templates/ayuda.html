@@ -1,0 +1,262 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Ayuda | Tienda CRUD{% endblock %}
+
+{% block contenido %}
+
+<!-- ENCABEZADO -->
+<div class="mb-4">
+    <h2 class="fw-bold">❓ Centro de ayuda</h2>
+    <p class="text-secondary">
+        Aprende a utilizar nuestro sistema de gestión de productos.
+    </p>
+</div>
+
+<!-- BIENVENIDA -->
+<section class="card shadow-sm border-0 rounded-4 mb-4">
+    <div class="card-body p-4">
+
+        <h4 class="fw-bold">🛍️ ¿Qué es Tienda CRUD?</h4>
+
+        <p>
+            Tienda CRUD es una aplicación web desarrollada con
+            Flask, Python y MongoDB, que permite administrar
+            los productos de una tienda de manera sencilla.
+        </p>
+
+        <p class="mb-0">
+            El sistema permite registrar, consultar, actualizar
+            y eliminar productos, además de ofrecer una API REST
+            para gestionar la información mediante solicitudes HTTP.
+        </p>
+
+    </div>
+</section>
+
+<!-- OPERACIONES CRUD -->
+<h3 class="h4 fw-bold mb-3">⚙️ Operaciones principales</h3>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-body p-4">
+                <h5 class="text-success fw-bold">
+                    ➕ CREATE - Crear
+                </h5>
+                <p class="mb-0">
+                    Permite registrar nuevos productos indicando
+                    su nombre, categoría, precio, cantidad,
+                    descripción e imagen.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-body p-4">
+                <h5 class="text-primary fw-bold">
+                    📖 READ - Consultar
+                </h5>
+                <p class="mb-0">
+                    Muestra los productos registrados en MongoDB,
+                    incluyendo sus precios, categorías y existencias.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-body p-4">
+                <h5 class="text-warning fw-bold">
+                    ✏️ UPDATE - Actualizar
+                </h5>
+                <p class="mb-0">
+                    Permite modificar la información de un producto
+                    sin necesidad de eliminarlo y registrarlo otra vez.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-body p-4">
+                <h5 class="text-danger fw-bold">
+                    🗑️ DELETE - Eliminar
+                </h5>
+                <p class="mb-0">
+                    Elimina del inventario un producto seleccionado,
+                    después de solicitar una confirmación.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- INSTRUCCIONES -->
+<section class="card shadow-sm border-0 rounded-4 mb-4">
+    <div class="card-body p-4">
+
+        <h4 class="fw-bold mb-3">
+            📋 ¿Cómo utilizar la aplicación?
+        </h4>
+
+        <ol class="mb-0">
+            <li class="mb-2">
+                Entra a <strong>Registrar producto</strong>.
+            </li>
+
+            <li class="mb-2">
+                Completa el nombre, categoría, precio y stock.
+                La descripción y la imagen son opcionales.
+            </li>
+
+            <li class="mb-2">
+                Presiona <strong>Guardar producto</strong>.
+            </li>
+
+            <li class="mb-2">
+                Consulta los artículos en la sección
+                <strong>Productos</strong>.
+            </li>
+
+            <li class="mb-2">
+                Utiliza <strong>Editar</strong> para actualizar
+                la información.
+            </li>
+
+            <li>
+                Utiliza <strong>Eliminar</strong> para quitar
+                un producto del inventario.
+            </li>
+        </ol>
+
+    </div>
+</section>
+
+<!-- API REST -->
+<section class="card shadow-sm border-0 rounded-4 mb-4">
+    <div class="card-body p-4">
+
+        <h4 class="fw-bold mb-3">
+            🌐 API REST de productos
+        </h4>
+
+        <p class="text-secondary">
+            La aplicación incluye una API REST que permite
+            gestionar productos mediante solicitudes HTTP
+            y respuestas en formato JSON.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-striped align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Método</th>
+                        <th>Ruta</th>
+                        <th>Función</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><span class="badge bg-success">GET</span></td>
+                        <td><code>/api/productos</code></td>
+                        <td>Consultar todos los productos</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="badge bg-success">GET</span></td>
+                        <td><code>/api/productos/&lt;id&gt;</code></td>
+                        <td>Consultar un producto</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/api/productos</code></td>
+                        <td>Crear un producto</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="badge bg-warning text-dark">PUT</span></td>
+                        <td><code>/api/productos/&lt;id&gt;</code></td>
+                        <td>Actualizar un producto</td>
+                    </tr>
+
+                    <tr>
+                        <td><span class="badge bg-danger">DELETE</span></td>
+                        <td><code>/api/productos/&lt;id&gt;</code></td>
+                        <td>Eliminar un producto</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="alert alert-info mb-0">
+            <strong>💡 Nota:</strong>
+            Puedes probar las solicitudes GET desde el navegador.
+            Para POST, PUT y DELETE puedes utilizar Postman
+            o Thunder Client.
+        </div>
+
+    </div>
+</section>
+
+<!-- TECNOLOGIAS -->
+<section class="card shadow-sm border-0 rounded-4 mb-4">
+    <div class="card-body p-4">
+
+        <h4 class="fw-bold mb-3">💻 Tecnologías utilizadas</h4>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <span class="badge text-bg-primary p-2">Python</span>
+            <span class="badge text-bg-secondary p-2">Flask</span>
+            <span class="badge text-bg-success p-2">MongoDB</span>
+            <span class="badge text-bg-primary p-2">Bootstrap</span>
+            <span class="badge text-bg-secondary p-2">HTML</span>
+            <span class="badge text-bg-warning p-2">API REST</span>
+        </div>
+
+        <p class="text-secondary mt-3 mb-0">
+            Fecha de consulta: {{ fecha }}
+        </p>
+
+    </div>
+</section>
+
+<!-- AVISO -->
+<div class="alert alert-warning">
+    ⚠️ Esta aplicación es un proyecto académico.
+    Utiliza únicamente productos y datos ficticios
+    durante las pruebas.
+</div>
+
+<!-- BOTONES -->
+<div class="d-flex gap-2 flex-wrap">
+
+    <a href="{{ url_for('inicio') }}"
+       class="btn btn-primary">
+        🏠 Volver al inicio
+    </a>
+
+    <a href="{{ url_for('registrar') }}"
+       class="btn btn-success">
+        ➕ Registrar producto
+    </a>
+
+    <a href="{{ url_for('lista') }}"
+       class="btn btn-outline-primary">
+        📦 Ver inventario
+    </a>
+
+</div>
+
+{% endblock %}
